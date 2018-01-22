@@ -407,13 +407,13 @@ var resizePizzas = function(size) {
   function changeSliderLabel(size) {
     switch(size) {
       case "1":
-        document.querySelector("#pizzaSize").innerHTML = "Small";
+      document.getElementById("pizzaSize").innerHTML = "Small";
         return;
       case "2":
-        document.querySelector("#pizzaSize").innerHTML = "Medium";
+       document.getElementById("pizzaSize").innerHTML = "Medium";
         return;
       case "3":
-        document.querySelector("#pizzaSize").innerHTML = "Large";
+       document.getElementById("pizzaSize").innerHTML = "Large";
         return;
       default:
         console.log("bug in changeSliderLabel");
@@ -437,7 +437,7 @@ var resizePizzas = function(size) {
           console.log("bug in sizeSwitcher");
       }
       
-      var randomPiZa =  document.querySelectorAll(".randomPizzaContainer");
+      var randomPiZa = document.getElementsByClassName("randomPizzaContainer");
     for (var i = 0; i < randomPiZa.length; i++) {
      randomPiZa[i].style.width = newwidth + "%";
     }
@@ -457,11 +457,10 @@ window.performance.mark("mark_start_generating"); // collect timing data
 
 // This for-loop actually creates and appends all of the pizzas when the page loads
 //------------------------------------------(2)--------------------------------------------------------
- var pizzasDiv = document.getElementById("randomPizzas");
+ var pizzasDiv =  document.querySelector("#randomPizzas");
 for (var i = 2; i < 100; i++) {
  
-  pizzasDiv.appendChild(pizzaElementGenerator(i));
-}
+pizzasDiv.appendChild(pizzaElementGenerator(i));}
 //-----------------------------------------------------------------------------------------------------
 
 // User Timing API again. These measurements tell you how long it took to generate the initial pizzas
@@ -493,7 +492,6 @@ function updatePositions() {
   window.performance.mark("mark_start_frame");
 
   var items = document.querySelectorAll('.mover');
-  //var newPlace = [];
      var scrollTop = document.documentElement.scrollTop;
   for (var i = 0; i < items.length; i++) {
     // document.body.scrollTop is no longer supported in Chrome.
@@ -519,11 +517,18 @@ window.addEventListener('scroll', updatePositions);
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
-  var cols = 8;
-  var s = 256;
+ 
+ 
+     var s = 256;
+     var width = screen.availWidth;
+     var height = screen.availHeight;
+   var cols = width / s;
+    var rows = height / s;                  // Generate pizza total based on available screen dimensions
+    var pizzaNums = Math.ceil(cols * rows);  //number of background pizzas
+    
+  var elem = document.createElement('img');
   var movingP1=  document.querySelector("#movingPizzas1");
-  for (var i = 0; i < 200; i++) {
-    var elem = document.createElement('img');
+  for (var i = 0; i < pizzaNums; i++) {
     elem.className = 'mover';
     elem.src = "images/pizza.png";
     elem.style.height = "100px";
