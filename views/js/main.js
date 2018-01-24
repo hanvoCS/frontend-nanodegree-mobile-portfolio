@@ -27,7 +27,7 @@ pizzaIngredients.meats = [
   "Spicy Sausage",
   "Chicken",
   "BBQ Chicken",
-  "Chorizo",
+  "Chorizo", 
   "Chicken Andouille",
   "Salami",
   "Tofu",
