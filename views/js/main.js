@@ -520,16 +520,15 @@ window.addEventListener('scroll', updatePositions);
  
  var pizzaZ = function() {
      var s = 256;
-    
     var cols = 8;
     var rows = screen.availHeight / s;        
     // Generate pizza total based on available screen dimensions
-    var pizzaNums = Math.ceil(cols * rows);  //number of background pizzas
-    
+    var pizzaNums = Math.ceil(cols * rows);  //number of background pizzas   
  
-  var movingP1=  document.querySelector("#movingPizzas1");
+ 
+     var movingP1=  document.getElementById("movingPizzas1");
   for (var i = 0; i < pizzaNums; i++) {
-var elem = document.createElement('img');
+   var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
     elem.style.height = "100px";
